@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let gradient = CAGradientLayer()
+    
     var testButton: UIButton!
     var cueCardButton: UIButton!
     var memoryGameButton: UIButton!
@@ -22,7 +24,12 @@ class ViewController: UIViewController {
         
         view = UIView()
         
-        view.backgroundColor = UIColor(red: 0.68, green: 0.78, blue: 0.81, alpha: 1)
+        //view.backgroundColor = UIColor(red: 0.68, green: 0.78, blue: 0.81, alpha: 1)
+        
+        gradient.colors = [UIColor.white.cgColor, UIColor(red: 0.68, green: 0.78, blue: 0.81, alpha: 1).cgColor]
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x:0, y:0.5)
+        view.layer.insertSublayer(gradient, at: 0)
         
         //Main Page Button Set Up:
         
@@ -30,29 +37,29 @@ class ViewController: UIViewController {
         let testButton = bounceButton(type: .system)
         testButton.addTarget(self, action: #selector(openTestView), for: .touchUpInside)
         testButton.translatesAutoresizingMaskIntoConstraints = false
-        
+
         //Text
         testButton.setTitle("Test Your Knowledge", for: .normal)
         testButton.setTitleColor(.black, for: .normal)
         testButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: deviceFontSize())
-        testButton.backgroundColor = UIColor(red: 1, green: 0.40, blue: 0.64, alpha: 0.15)
+        testButton.backgroundColor = UIColor(red: 1.2, green: 0.40, blue: 0.64, alpha: 0.15)
         testButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        
+
         //Border
         testButton.layer.borderWidth = 1
         testButton.layer.borderColor = UIColor(white: 0.8, alpha: 1).cgColor
         testButton.layer.cornerRadius = 25
-        
+
         //Shading
         testButton.layer.shadowColor = UIColor.black.cgColor
         testButton.layer.shadowOffset = CGSize(width: 1.0, height: 4.0)
         testButton.layer.shadowRadius = 2
         testButton.layer.shadowOpacity = 0.5
-        
+
         testButton.layer.masksToBounds = false
 
         view.addSubview(testButton)
-        
+
         //Con
         portrait = [
             testButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20),
@@ -67,41 +74,40 @@ class ViewController: UIViewController {
             testButton.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.6),
             testButton.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.18)]
     
-        
-        
     }
         
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    
     }
     
     func deviceFontSize() -> CGFloat {
-        
+
         //Adjust the text size appropriately with the device screen size
-        
+
         let baseFontSize = CGFloat(28)
         let bounds = UIScreen.main.bounds
-        
+
         var deviceWidth: CGFloat
-        
+
         if bounds.size.width < bounds.size.height {
-        
+
             deviceWidth = bounds.size.width
-        
+
         } else {
-            
+
             deviceWidth = bounds.size.height
-            
+
         }
 
         //Basing proportions off of an iPhone 12:
-        
+
         let baseWidth = CGFloat(390)
-        
+
         let fontSize = baseFontSize * (deviceWidth / baseWidth)
-        
+
         return fontSize
     }
     
@@ -109,16 +115,18 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
       
         if UIDevice.current.orientation.isPortrait {
-            
+
             NSLayoutConstraint.deactivate(landscape)
             NSLayoutConstraint.activate(portrait)
-            
+
         } else {
-            
+
             NSLayoutConstraint.deactivate(portrait)
             NSLayoutConstraint.activate(landscape)
-            
+
         }
+        
+        gradient.frame = view.bounds
     
     }
     
@@ -127,7 +135,7 @@ class ViewController: UIViewController {
         print("Boom")
         
     }
-
-
+    
+    
 }
 
