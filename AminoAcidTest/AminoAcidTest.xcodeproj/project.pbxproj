@@ -14,6 +14,8 @@
 		9CE00946266964E000A27AA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE00945266964E000A27AA6 /* Assets.xcassets */; };
 		9CE00949266964E000A27AA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CE00947266964E000A27AA6 /* LaunchScreen.storyboard */; };
 		9CE009532669C12100A27AA6 /* bounceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE009522669C12100A27AA6 /* bounceButton.swift */; };
+		9CE00956266A739800A27AA6 /* menuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE00955266A739800A27AA6 /* menuButton.swift */; };
+		9CE0095D266AA29B00A27AA6 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0095C266AA29B00A27AA6 /* testView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		9CE00948266964E000A27AA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CE0094A266964E000A27AA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CE009522669C12100A27AA6 /* bounceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bounceButton.swift; sourceTree = "<group>"; };
+		9CE00955266A739800A27AA6 /* menuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuButton.swift; sourceTree = "<group>"; };
+		9CE0095C266AA29B00A27AA6 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 				9CE0093C266964DE00A27AA6 /* AppDelegate.swift */,
 				9CE0093E266964DE00A27AA6 /* SceneDelegate.swift */,
 				9CE00940266964DE00A27AA6 /* ViewController.swift */,
+				9CE0095C266AA29B00A27AA6 /* testView.swift */,
+				9CE00955266A739800A27AA6 /* menuButton.swift */,
 				9CE009522669C12100A27AA6 /* bounceButton.swift */,
 				9CE00942266964DE00A27AA6 /* Main.storyboard */,
 				9CE00945266964E000A27AA6 /* Assets.xcassets */,
@@ -142,6 +148,8 @@
 			files = (
 				9CE00941266964DE00A27AA6 /* ViewController.swift in Sources */,
 				9CE009532669C12100A27AA6 /* bounceButton.swift in Sources */,
+				9CE0095D266AA29B00A27AA6 /* testView.swift in Sources */,
+				9CE00956266A739800A27AA6 /* menuButton.swift in Sources */,
 				9CE0093D266964DE00A27AA6 /* AppDelegate.swift in Sources */,
 				9CE0093F266964DE00A27AA6 /* SceneDelegate.swift in Sources */,
 			);

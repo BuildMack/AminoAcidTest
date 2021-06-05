@@ -34,40 +34,54 @@ class ViewController: UIViewController {
         //Main Page Button Set Up:
         
         //Test Button
-        let testButton = bounceButton(type: .system)
+        let testButton = menuButton(title: "Start Test", fontSize: deviceFontSize(28))
+        testButton.layer.borderColor = UIColor(red: 0.86, green: 0.65, blue: 0.13, alpha: 1).cgColor
+        let cueCardButton = menuButton(title: "Cue Cards", fontSize: deviceFontSize(28))
+        let gameButton = menuButton(title: "MemoryGame", fontSize: deviceFontSize(28))
+        let arButton = menuButton(title: "3D Models", fontSize: deviceFontSize(28))
+        
         testButton.addTarget(self, action: #selector(openTestView), for: .touchUpInside)
-        testButton.translatesAutoresizingMaskIntoConstraints = false
+        cueCardButton.addTarget(self, action: #selector(openTestView), for: .touchUpInside)
+        gameButton.addTarget(self, action: #selector(openTestView), for: .touchUpInside)
+        arButton.addTarget(self, action: #selector(openTestView), for: .touchUpInside)
 
-        //Text
-        testButton.setTitle("Test Your Knowledge", for: .normal)
-        testButton.setTitleColor(.black, for: .normal)
-        testButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: deviceFontSize())
-        testButton.backgroundColor = UIColor(red: 1.2, green: 0.40, blue: 0.64, alpha: 0.15)
-        testButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-
-        //Border
-        testButton.layer.borderWidth = 1
-        testButton.layer.borderColor = UIColor(white: 0.8, alpha: 1).cgColor
-        testButton.layer.cornerRadius = 25
-
-        //Shading
-        testButton.layer.shadowColor = UIColor.black.cgColor
-        testButton.layer.shadowOffset = CGSize(width: 1.0, height: 4.0)
-        testButton.layer.shadowRadius = 2
-        testButton.layer.shadowOpacity = 0.5
-
-        testButton.layer.masksToBounds = false
-
+        
         view.addSubview(testButton)
+        view.addSubview(cueCardButton)
+        view.addSubview(gameButton)
+        view.addSubview(arButton)
 
-        //Con
+        //Constraints
+        
+        //Portrait Constraints
         portrait = [
+            
+            // Test Button
             testButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20),
-        testButton.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-        testButton.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
-        testButton.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.15)]
+            testButton.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            testButton.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
+            testButton.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2),
+        
+            // Cue Cards Button
+            cueCardButton.topAnchor.constraint(equalTo: testButton.bottomAnchor, constant: 20),
+            cueCardButton.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            cueCardButton.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
+            cueCardButton.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2),
+            
+            // Game Button
+            gameButton.topAnchor.constraint(equalTo: cueCardButton.bottomAnchor, constant: 20),
+            gameButton.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            gameButton.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
+            gameButton.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2),
+            
+            //Augmented Reality Button
+            arButton.topAnchor.constraint(equalTo: gameButton.bottomAnchor, constant: 20),
+            arButton.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            arButton.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
+            arButton.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2)]
 
-
+        
+        //Landscape Constraints
         landscape = [
             testButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 200),
             testButton.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
@@ -83,11 +97,11 @@ class ViewController: UIViewController {
     
     }
     
-    func deviceFontSize() -> CGFloat {
+    func deviceFontSize(_ originalSize: CGFloat) -> CGFloat {
 
         //Adjust the text size appropriately with the device screen size
 
-        let baseFontSize = CGFloat(28)
+        let baseFontSize = originalSize
         let bounds = UIScreen.main.bounds
 
         var deviceWidth: CGFloat
@@ -121,9 +135,11 @@ class ViewController: UIViewController {
 
         } else {
 
-            NSLayoutConstraint.deactivate(portrait)
-            NSLayoutConstraint.activate(landscape)
+//            NSLayoutConstraint.deactivate(portrait)
+//            NSLayoutConstraint.activate(landscape)
 
+            NSLayoutConstraint.deactivate(landscape)
+            NSLayoutConstraint.activate(portrait)
         }
         
         gradient.frame = view.bounds
@@ -132,7 +148,16 @@ class ViewController: UIViewController {
     
     @objc func openTestView() {
         
-        print("Boom")
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "Test") as? testView {
+        
+            nextViewController.modalPresentationStyle = .fullScreen
+            
+            present(nextViewController, animated:true, completion:nil)
+        
+        }
+        
         
     }
     
