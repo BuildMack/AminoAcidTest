@@ -64,18 +64,20 @@ override func loadView() {
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .light, scale: .small)
     
     let image = UIImage(systemName: "house.fill", withConfiguration: largeConfig)
-        homeButton = UIButton()
-        homeButton.tintColor = .black
-        homeButton.frame = CGRect(x: 250, y: 400, width: 100, height: 100)
-        homeButton.setImage(image, for: .normal)
-        homeButton.backgroundColor = UIColor(red: 1.2, green: 0.40, blue: 0.64, alpha: 0.2)
-        homeButton.layer.cornerRadius = 50
-        homeButton.layer.borderWidth = 1
-        homeButton.layer.borderColor = UIColor.black.cgColor
-        homeButton.addTarget(self, action: #selector(home), for: .touchUpInside)
-        view.addSubview(homeButton)
-        
+    homeButton = UIButton()
+    homeButton.translatesAutoresizingMaskIntoConstraints = false
+    homeButton.tintColor = .black
+    homeButton.frame.size = CGSize(width: 300, height: 300)
+    homeButton.setImage(image, for: .normal)
+    homeButton.backgroundColor = UIColor(red: 1.2, green: 0.40, blue: 0.64, alpha: 0.2)
+    homeButton.layer.cornerRadius = 1
+    homeButton.layer.borderWidth = 1
+    homeButton.layer.borderColor = UIColor.black.cgColor
+    homeButton.addTarget(self, action: #selector(home), for: .touchUpInside)
+    view.addSubview(homeButton)
     
+    let answersStructureLabel = typeButton(title: "Structures", fontSize: 20)
+    view.addSubview(answersStructureLabel)
     
     
     
@@ -88,21 +90,21 @@ override func loadView() {
         questionsLabel.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
         questionsLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
         questionsLabel.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1),
-    
-        // Answer Label
         
-        answersLabel.topAnchor.constraint(equalTo: questionsLabel.bottomAnchor, constant: 10),
-        answersLabel.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-        answersLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
-        answersLabel.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1),
+        answersStructureLabel.topAnchor.constraint(equalTo: questionsLabel.bottomAnchor, constant: 10),
+        
     
-//        //home button
-//        homeButton.topAnchor.constraint(equalTo: answersLabel.bottomAnchor,constant: 20),
-//        homeButton.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-//        homeButton.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.2),
-    
-    
-    
+//        // Answer Label
+//
+//        answersLabel.topAnchor.constraint(equalTo: answersStructureLabel.bottomAnchor, constant: 10),
+//        answersLabel.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+//        answersLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
+//        answersLabel.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1),
+//
+        //home button
+        homeButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -25),
+        homeButton.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: -25),
+        
     
     ]
     

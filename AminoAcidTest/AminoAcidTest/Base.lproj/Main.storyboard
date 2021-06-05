@@ -39,6 +39,21 @@
             </objects>
             <point key="canvasLocation" x="1796" y="72"/>
         </scene>
+        <!--Settings View-->
+        <scene sceneID="CSx-86-rEa">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j5k-oW-wf3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="39T-Eg-QYq" customClass="settingsView" customModule="AminoAcidTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="po7-e6-LUF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Fbg-TY-aJP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2567" y="72"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

@@ -7,37 +7,28 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    let gradient = CAGradientLayer()
+class ViewController: standardAppView {
     
     var testButton: UIButton!
     var cueCardButton: UIButton!
     var memoryGameButton: UIButton!
     var ARButton: UIButton!
     var fallingGameButton: UIButton!
-    
-    var portrait: [NSLayoutConstraint]!
-    var landscape: [NSLayoutConstraint]!
+    var settingsButton: UIButton!
     
     override func loadView() {
         
         view = UIView()
+        gradient = CAGradientLayer()
+        setBackground(view: view, gradient: gradient)
         
-        //view.backgroundColor = UIColor(red: 0.68, green: 0.78, blue: 0.81, alpha: 1)
-        
-        gradient.colors = [UIColor.white.cgColor, UIColor(red: 0.68, green: 0.78, blue: 0.81, alpha: 1).cgColor]
-        gradient.startPoint = CGPoint(x: 0, y: 0)
-        gradient.endPoint = CGPoint(x:0, y:0.5)
-        view.layer.insertSublayer(gradient, at: 0)
         
         //Main Page Button Set Up:
         
         //Test Button
         let testButton = menuButton(title: "Start Test", fontSize: deviceFontSize(28))
-        testButton.layer.borderColor = UIColor(red: 0.86, green: 0.65, blue: 0.13, alpha: 1).cgColor
         let cueCardButton = menuButton(title: "Cue Cards", fontSize: deviceFontSize(28))
-        let gameButton = menuButton(title: "MemoryGame", fontSize: deviceFontSize(28))
+        let gameButton = menuButton(title: "Memory Game", fontSize: deviceFontSize(28))
         let arButton = menuButton(title: "3D Models", fontSize: deviceFontSize(28))
         
         testButton.addTarget(self, action: #selector(openTestView), for: .touchUpInside)
@@ -50,6 +41,23 @@ class ViewController: UIViewController {
         view.addSubview(cueCardButton)
         view.addSubview(gameButton)
         view.addSubview(arButton)
+        
+        //Settings Button
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light, scale: .medium)
+        let image = UIImage(systemName: "gearshape.fill", withConfiguration: largeConfig)
+        settingsButton = UIButton()
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton.tintColor = .black
+        settingsButton.frame.size = CGSize(width: 300, height: 300)
+        settingsButton.setImage(image, for: .normal)
+        //settingsButton.backgroundColor = UIColor(red: 1.2, green: 0.40, blue: 0.64, alpha: 0.2)
+        settingsButton.layer.cornerRadius = 3
+        //settingsButton.layer.borderWidth = 1
+        //settingsButton.layer.borderColor = UIColor.black.cgColor
+        settingsButton.addTarget(self, action: #selector(openSettingsView), for: .touchUpInside)
+       
+        view.addSubview(settingsButton)
+        
 
         //Constraints
         
@@ -78,7 +86,17 @@ class ViewController: UIViewController {
             arButton.topAnchor.constraint(equalTo: gameButton.bottomAnchor, constant: 20),
             arButton.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
             arButton.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.8),
-            arButton.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2)]
+            arButton.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2),
+        
+            //Settings Button
+            
+            settingsButton.topAnchor.constraint(equalTo: arButton.bottomAnchor),
+            settingsButton.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            settingsButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+            //settingsButton.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.1),
+            //settingsButton.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1)
+            ]
+            
 
         
         //Landscape Constraints
@@ -125,27 +143,6 @@ class ViewController: UIViewController {
         return fontSize
     }
     
-    
-    override func viewDidLayoutSubviews() {
-      
-        if UIDevice.current.orientation.isPortrait {
-
-            NSLayoutConstraint.deactivate(landscape)
-            NSLayoutConstraint.activate(portrait)
-
-        } else {
-
-//            NSLayoutConstraint.deactivate(portrait)
-//            NSLayoutConstraint.activate(landscape)
-
-            NSLayoutConstraint.deactivate(landscape)
-            NSLayoutConstraint.activate(portrait)
-        }
-        
-        gradient.frame = view.bounds
-    
-    }
-    
     @objc func openTestView() {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -158,6 +155,19 @@ class ViewController: UIViewController {
         
         }
         
+    }
+    
+    @objc func openSettingsView() {
+            
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+        if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "Settings") as? settingsView {
+            
+            nextViewController.modalPresentationStyle = .fullScreen
+                
+            present(nextViewController, animated:true, completion:nil)
+            
+        }
         
     }
     
